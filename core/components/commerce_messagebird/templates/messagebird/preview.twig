@@ -1,0 +1,71 @@
+<table class="c ui definition table">
+    <tbody>
+    <tr>
+        <td>{{ lex('commerce.recipient') }}</td>
+        <td>{{ message.recipient }}</td>
+    </tr>
+    {% if message.sent %}
+    <tr>
+        <td>{{ lex('commerce_messagebird.msgid') }}</td>
+        <td>{{ message.properties.messagebird_id }}</td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<style type="text/css">
+.commercemessagebird-preview {
+    max-width: 450px;
+    margin: 0 auto;
+}
+.commercemessagebird-preview div {
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    line-height: 24px;
+}
+.commercemessagebird-preview div:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.commercemessagebird-message {
+    position: relative;
+    padding: 10px 20px;
+    color: white;
+    background: #0B93F6;
+    border-radius: 25px;
+    float: right;
+}
+.commercemessagebird-message:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -2px;
+    right: -7px;
+    height: 20px;
+    border-right: 20px solid #0B93F6;
+    border-bottom-left-radius: 16px 14px;
+    -webkit-transform: translate(0, -2px);
+}
+.commercemessagebird-message:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: -2px;
+    right: -56px;
+    width: 26px;
+    height: 20px;
+    background: white;
+    border-bottom-left-radius: 10px;
+    -webkit-transform: translate(-30px, -2px);
+}
+</style>
+
+<section class="commercemessagebird-preview">
+    <p class="commercemessagebird-message">
+        {% autoescape false %}{{ body }}{% endautoescape %}
+    </p>
+    <br style="clear: both">
+</section>
