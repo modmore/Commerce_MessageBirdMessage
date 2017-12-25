@@ -18,10 +18,10 @@ foreach ($settingSource as $key => $options) {
     /** @var modSystemSetting */
     $settings[$key] = $modx->newObject('modSystemSetting');
     $settings[$key]->fromArray(array(
-        'key' => 'commerce.' . $key,
+        'key' => 'commerce_messagebird.' . $key,
         'xtype' => $xtype,
         'value' => $options['value'],
-        'namespace' => 'commerce',
+        'namespace' => 'commerce_messagebird',
         'area' => $options['area'],
         'editedon' => time(),
     ), '', true, true);
