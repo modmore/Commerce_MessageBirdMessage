@@ -1,13 +1,13 @@
 <?php
 
 $_lang['commerce_messagebird'] = 'MessageBird';
-$_lang['commerce_messagebird.description'] = 'Integration of MessageBird, to allow sending order messages via SMS automatically (as status change action) or manually (through order messages).';
-$_lang['commerce_messagebird.module_description'] = 'Important: before you can send messages with the MessageBird API, configure the commerce_messagebird.access_key and commerce_messagebird.originator system settings.';
+$_lang['commerce_messagebird.description'] = 'Integration von MessageBird für die Nutzung von automatischen (bei Statusänderung) oder von manuellen Benachrichtigungen (per Auftragsnachrichten) per SMS.';
+$_lang['commerce_messagebird.module_description'] = 'Wichtig: bevor Sie Nachrichten mit der MessageBird-API senden können, konfigurieren Sie die commerce_messagebird.access_key und commerce_messagebird.originator Systemeinstellungen.';
 $_lang['commerce_messagebird.recipients'] = 'Empfänger';
-$_lang['commerce_messagebird.recipients.description'] = 'The recipient(s) of the text message(s) to be sent. Enter recipients separated by a comma. Valid values include: "billing", "shipping", or a valid phone number including country code, like +31612345678.';
+$_lang['commerce_messagebird.recipients.description'] = 'Der oder die Empfänger der Textnachricht(en). Mehrere Empfänger durch Komma trennen. Zulässige Werte: "billing", "shipping", oder eine gültige Telefonnummer mit Ländervorwahl, z.B. +4912345678.';
 $_lang['commerce_messagebird.content'] = 'Nachricht';
-$_lang['commerce_messagebird.content.simple_description'] = 'The content to send in a text message to the customer. Keep in mind text messages are billed by the number of characters.';
-$_lang['commerce_messagebird.content.description'] = 'The text message to send. You can use various placeholders for name/address information ({{ shipping_address.fullname }}, {{ shipping_address.address1 }}, etc), order information ({{ order.id }}, {{ order.total_formatted }}, etc) and more. See https://docs.modmore.com/en/Commerce/v1/Orders/Messages.html for available placeholders. Keep in mind that SMS is for short messages, and that MessageBird bills per 70 (unicode)/160 (GSM 03.38) characters.';
+$_lang['commerce_messagebird.content.simple_description'] = 'Der Inhalt einer Textnachricht, die an den Empfänger gesendet wird. Bitte beachten Sie, dass SMS teurer werden, je länger sie sind.';
+$_lang['commerce_messagebird.content.description'] = 'Die SMS, die gesendet werden soll. Diverse Platzhalter für Namen/Adresse verfügbar ({{ shipping_address.fullname }}, {{ shipping_address.address1 }}, etc.), Bestellinformationen ( {{ order.id }}, {{ order.total_formatted }}, etc.) und viele weitere. Verfügbare Platzhalter einzusehen unter: https://docs.modmore.com/en/Commerce/v1/Orders/Messages.html. Bitte beachten Sie, dass SMS teurer werden, je länger sie sind. MessageBird berechnet per 70(unicode) bzw. per 160(GSM 03.38) Zeichen.';
 $_lang['commerce_messagebird.msgid'] = 'MessageBird Nachricht-ID';
 
 $_lang['setting_commerce_messagebird.access_key'] = 'Zugriffsschlüssel';
