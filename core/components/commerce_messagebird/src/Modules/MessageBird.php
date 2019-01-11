@@ -1,6 +1,9 @@
 <?php
 namespace modmore\CommerceMessageBird\Modules;
+use modmore\Commerce\Admin\Configuration\About\ComposerPackages;
+use modmore\Commerce\Admin\Sections\SimpleSection;
 use modmore\Commerce\Admin\Widgets\Form\DescriptionField;
+use modmore\Commerce\Events\Admin\PageEvent;
 use modmore\Commerce\Modules\BaseModule;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Twig\Loader\ChainLoader;
@@ -40,6 +43,11 @@ class MessageBird extends BaseModule {
         /** @var ChainLoader $loader */
         $loader = $this->commerce->twig->getLoader();
         $loader->addLoader(new FilesystemLoader($root . '/templates/'));
+
+        // Added in 0.12.0
+        if (defined('\Commerce::EVENT_DASHBOARD_LOAD_ABOUT')) {
+            $dispatcher->addListener(\Commerce::EVENT_DASHBOARD_LOAD_ABOUT, [$this, 'addLibrariesToAbout']);
+        }
     }
 
     public function getModuleConfiguration(\comModule $module)
@@ -51,5 +59,21 @@ class MessageBird extends BaseModule {
         ]);
 
         return $fields;
+    }
+
+    public function addLibrariesToAbout(PageEvent $event)
+    {
+        $lockFile = dirname(dirname(__DIR__)) . '/composer.lock';
+        if (file_exists($lockFile)) {
+            $section = new SimpleSection($this->commerce);
+            $section->addWidget(new ComposerPackages($this->commerce, [
+                'lockFile' => $lockFile,
+                'heading' => $this->adapter->lexicon('commerce.about.open_source_libraries') . ' - ' . $this->adapter->lexicon('commerce_messagebird'),
+                'introduction' => '', // Could add information about how libraries are used, if you'd like
+            ]));
+
+            $about = $event->getPage();
+            $about->addSection($section);
+        }
     }
 }
