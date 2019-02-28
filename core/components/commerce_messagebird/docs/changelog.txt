@@ -1,3 +1,5 @@
+- Fix available phone numbers not showing up when creating an order message in Commerce 0.12
+
 ++ MessageBird for Commerce 1.0.0-pl
 ++ Released on 2018-02-02
 ++++++++++++++++++++++++++

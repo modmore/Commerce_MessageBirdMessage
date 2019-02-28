@@ -105,7 +105,7 @@ class MessageBirdOrderMessage extends comOrderMessage
         $order = $this->adapter->getObject('comOrder', ['id' => $this->get('order')]);
         if ($order instanceof comOrder) {
             $billing = $order->getBillingAddress();
-            if ($billing instanceof comAddress) {
+            if ($billing instanceof comOrderAddress) {
                 $phone = $billing->get('phone');
                 if (!empty($phone)) {
                     $options[] = [
@@ -122,7 +122,7 @@ class MessageBirdOrderMessage extends comOrderMessage
                 }
             }
             $shipping = $order->getShippingAddress();
-            if ($shipping instanceof comAddress) {
+            if ($shipping instanceof comOrderAddress) {
                 $phone = $shipping->get('phone');
                 if (!empty($phone)) {
                     $options[] = [
