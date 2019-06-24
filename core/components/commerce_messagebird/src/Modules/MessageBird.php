@@ -6,8 +6,6 @@ use modmore\Commerce\Admin\Widgets\Form\DescriptionField;
 use modmore\Commerce\Events\Admin\PageEvent;
 use modmore\Commerce\Modules\BaseModule;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Twig\Loader\ChainLoader;
-use Twig\Loader\FilesystemLoader;
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
@@ -35,19 +33,15 @@ class MessageBird extends BaseModule {
         $this->adapter->loadLexicon('commerce_messagebird:default');
 
         // Add the xPDO package, so Commerce can detect the derivative classes
-        $root = dirname(dirname(__DIR__));
+        $root = dirname(__DIR__, 2);
         $path = $root . '/model/';
         $this->adapter->loadPackage('commerce_messagebird', $path);
 
-        // Add template path to twig
-        /** @var ChainLoader $loader */
-        $loader = $this->commerce->twig->getLoader();
-        $loader->addLoader(new FilesystemLoader($root . '/templates/'));
+        // Add template path to the view
+        $this->commerce->view()->addTemplatesPath($root . '/templates/');
 
-        // Added in 0.12.0
-        if (defined('\Commerce::EVENT_DASHBOARD_LOAD_ABOUT')) {
-            $dispatcher->addListener(\Commerce::EVENT_DASHBOARD_LOAD_ABOUT, [$this, 'addLibrariesToAbout']);
-        }
+        // Render dependencies in about
+        $dispatcher->addListener(\Commerce::EVENT_DASHBOARD_LOAD_ABOUT, [$this, 'addLibrariesToAbout']);
     }
 
     public function getModuleConfiguration(\comModule $module)

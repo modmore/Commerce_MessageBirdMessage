@@ -1,10 +1,11 @@
 <?php
+
 use modmore\Commerce\Admin\Widgets\Form\CheckboxField;
 use modmore\Commerce\Admin\Widgets\Form\SelectField;
 use modmore\Commerce\Admin\Widgets\Form\TextareaField;
-use modmore\Commerce\Admin\Widgets\Form\TextField;
 use modmore\Commerce\Admin\Widgets\Form\Validation\Length;
 use modmore\Commerce\Admin\Widgets\Form\Validation\Required;
+use modmore\Commerce\Exceptions\ViewException;
 
 /**
  * MessageBird extension for Commerce, allowing text messages to be sent.
@@ -28,8 +29,11 @@ class MessageBirdOrderMessage extends comOrderMessage
     {
         // Parse the message body through twig
         $placeholders = $this->getPlaceholders();
-        $contentTpl = $this->commerce->twig->createTemplate($this->get('content'));
-        $body = $contentTpl->render($placeholders);
+        try {
+            $body = $this->commerce->view()->renderString($this->get('content'), $placeholders);
+        } catch (ViewException $e) {
+            $body = $e->getMessage();
+        }
 
         // Get the recipient and do some basic filtering
         $recipient = $this->get('recipient');
@@ -91,9 +95,13 @@ class MessageBirdOrderMessage extends comOrderMessage
     {
         $values = $this->getPlaceholders();
         $values['message'] = $this->toArray();
-        $contentTpl = $this->commerce->twig->createTemplate($this->get('content'));
-        $values['body'] = $contentTpl->render($values);
-        return $this->commerce->twig->render('messagebird/preview.twig', $values);
+        try {
+            $values['body'] = $this->commerce->view()->renderString($this->get('content'), $values);
+        } catch (ViewException $e) {
+            $values['body'] = $e->getMessage();
+        }
+
+        return $this->commerce->view()->render('messagebird/preview.twig', $values);
     }
 
     public function getModelFields()
