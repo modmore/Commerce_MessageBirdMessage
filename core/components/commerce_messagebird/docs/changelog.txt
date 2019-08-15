@@ -1,3 +1,5 @@
+- Upgrade usage of Commerce::$twig to Commerce::view(), bumping minimum to Commerce 1.1+
+
 MessageBird for Commerce 1.0.1-pl
 ---------------------------------
 Released on 2018-02-28
