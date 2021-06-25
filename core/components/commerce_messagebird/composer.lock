@@ -1,32 +1,32 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "990e3a518f2f7a564f2dc463461a9a02",
     "content-hash": "e81fe506f981ee2ff79bc12c3872a75c",
     "packages": [
         {
             "name": "messagebird/php-rest-api",
-            "version": "v1.9.3",
+            "version": "v1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/messagebird/php-rest-api.git",
-                "reference": "850fbffde83d7bfe362fce10aba9f27428aba670"
+                "reference": "f7c7ae490b0b2d9d228bac61b5d855c4623f7fad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/messagebird/php-rest-api/zipball/850fbffde83d7bfe362fce10aba9f27428aba670",
-                "reference": "850fbffde83d7bfe362fce10aba9f27428aba670",
+                "url": "https://api.github.com/repos/messagebird/php-rest-api/zipball/f7c7ae490b0b2d9d228bac61b5d855c4623f7fad",
+                "reference": "f7c7ae490b0b2d9d228bac61b5d855c4623f7fad",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": ">=5.3.0"
+                "ext-json": "*",
+                "php": ">=7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.7.*"
+                "phpunit/phpunit": "^6.0|^7.5"
             },
             "type": "library",
             "autoload": {
@@ -46,7 +46,12 @@
             ],
             "description": "MessageBird REST API client for PHP",
             "homepage": "https://github.com/messagebird/php-rest-api",
-            "time": "2017-11-29 12:18:31"
+            "support": {
+                "docs": "https://developers.messagebird.com/api",
+                "issues": "https://github.com/messagebird/php-rest-api/issues",
+                "source": "https://github.com/messagebird/php-rest-api"
+            },
+            "time": "2021-03-25T21:53:01+00:00"
         }
     ],
     "packages-dev": [],
@@ -56,5 +61,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
