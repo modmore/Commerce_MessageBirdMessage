@@ -1,6 +1,6 @@
 {
     "require": {
-        "messagebird/php-rest-api": "^1.9"
+        "messagebird/php-rest-api": "^2.0"
     },
     "autoload": {
         "psr-4": {
